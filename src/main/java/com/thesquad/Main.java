@@ -20,7 +20,7 @@ public class Main {
             System.out.println("An error occurred while trying to connect to the database.");
         } finally {
             // Close the connection if it was established
-            if (dbConnection != null) {
+            if (dbConnection != null ) {
                 dbConnection.closeConnection();
             }
         }
