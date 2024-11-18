@@ -1,4 +1,3 @@
-
 package com.thesquad.connection;
 
 import java.io.InputStream;
@@ -9,7 +8,6 @@ import java.util.Properties;
 
 public class DBConnection {
 
-    // JDBC driver for MySQL database
     private final String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
     private String DB_URL;
     private String DB_USER;
@@ -40,10 +38,9 @@ public class DBConnection {
             connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
             System.out.println("Connection to MySQL database established successfully!");
         } catch (SQLException | ClassNotFoundException e) {
-            e.printStackTrace();
-            throw new RuntimeException("Ocorreu um erro ao estabelecer conexão com a BD!");
-        } catch (Exception e) {
-            e.printStackTrace();
+            throw new RuntimeException("Error establishing connection with the database!");
+        } catch (Exception ex) {
+            System.out.println("Error establishing connection with the database!");
         }
     }
 

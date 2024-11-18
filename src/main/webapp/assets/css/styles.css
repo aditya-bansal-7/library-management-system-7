@@ -1,0 +1,57 @@
+/* 
+    Created on : 01/01/2022, 23:19:25
+    Author     : edsonpaulo
+*/
+
+* {
+    box-sizing: border-box;
+    outline: none;
+}
+
+html, body {
+    padding: 0;
+    margin: 0;
+    height: 100vh;
+    background: whitesmoke;
+}
+
+main {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.menu {
+    width: 80%;
+    height: 80%;
+    background: whitesmoke;
+    border-radius: 20px;
+}
+
+.sidebar {
+    height: 100vh;
+    width: 250px;
+    display: flex;
+    position: fixed;
+    flex-direction: column;
+    padding: 40px 25px;
+    overflow-y: auto;
+}
+
+label.required:after {
+    content: "*";
+    color: red;
+}
+
+.bootstrap-select>.dropdown-toggle.bs-placeholder, 
+.bootstrap-select>.dropdown-toggle.bs-placeholder:active, 
+.bootstrap-select>.dropdown-toggle.bs-placeholder:focus, 
+.bootstrap-select>.dropdown-toggle.bs-placeholder:hover {
+    color: #444 !important;
+    background: #fff !important;
+    border: 1px solid #ccc;
+}
+
