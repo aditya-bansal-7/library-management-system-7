@@ -4,44 +4,34 @@ import java.time.LocalDateTime;
 
 public class AddressModel {
 
-    private int addressId, houseNum, communeId;
-    private String street, district;
-    private LocalDateTime creationDate;
+    private int addressId;
+    private int houseNumber;
+    private int districtId;
+    private String street;
+    private String neighborhood;
+    private LocalDateTime createdAt;
 
+    // Default constructor
     public AddressModel() {
     }
 
-    public AddressModel(int addressId, String district, int houseNum, int communeId, String street, LocalDateTime creationDate) {
+    // Parameterized constructor
+    public AddressModel(int addressId, String street, int houseNumber, String neighborhood, int districtId, LocalDateTime createdAt) {
         this.addressId = addressId;
-        this.district = district;
-        this.communeId = communeId;
-        this.houseNum = houseNum;
         this.street = street;
-        this.creationDate = creationDate;
+        this.houseNumber = houseNumber;
+        this.neighborhood = neighborhood;
+        this.districtId = districtId;
+        this.createdAt = createdAt;
     }
 
+    // Getters and Setters
     public int getAddressId() {
         return addressId;
     }
 
     public void setAddressId(int addressId) {
         this.addressId = addressId;
-    }
-
-    public String getDistrict() {
-        return district;
-    }
-
-    public void setDistrict(String district) {
-        this.district = district;
-    }
-
-    public int getHouseNum() {
-        return houseNum;
-    }
-
-    public void setHouseNum(int houseNum) {
-        this.houseNum = houseNum;
     }
 
     public String getStreet() {
@@ -51,20 +41,40 @@ public class AddressModel {
     public void setStreet(String street) {
         this.street = street;
     }
-    
-    public int getCommuneId() {
-        return communeId;
+
+    public int getHouseNumber() {
+        return houseNumber;
     }
 
-    public void setCommuneId(int communeId) {
-        this.communeId = communeId;
+    public void setHouseNumber(int houseNumber) {
+        this.houseNumber = houseNumber;
     }
 
-    public LocalDateTime getCreationDate() {
-        return creationDate;
+    public String getNeighborhood() {
+        return neighborhood;
     }
 
-    public void setCreationDate(LocalDateTime creationDate) {
-        this.creationDate = creationDate;
+    public void setNeighborhood(String neighborhood) {
+        this.neighborhood = neighborhood;
+    }
+
+    public int getDistrictId() {
+        return districtId;
+    }
+
+    public void setDistrictId(int districtId) {
+        this.districtId = districtId;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public void setDistrict(String parameter) {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 }

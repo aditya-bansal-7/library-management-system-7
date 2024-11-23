@@ -15,13 +15,14 @@ public class AddressDAO {
 
     public AddressDAO() {}
 
+    // Create an address
     public void create(AddressModel address, DBConnection connection) {
-        String sql = "INSERT INTO morada(num_casa, rua, bairro, fk_comuna) VALUES(?, ?, ?, ?)";
+        String sql = "INSERT INTO address (street, house_number, neighborhood, district_id) VALUES (?, ?, ?, ?)";
         try (PreparedStatement ps = connection.getConnection().prepareStatement(sql)) {
-            ps.setInt(1, address.getHouseNum());
-            ps.setString(2, address.getStreet());
-            ps.setString(3, address.getDistrict());
-            ps.setInt(4, address.getCommuneId());
+            ps.setString(1, address.getStreet());
+            ps.setInt(2, address.getHouseNumber());
+            ps.setString(3, address.getNeighborhood());
+            ps.setInt(4, address.getDistrictId());
 
             ps.executeUpdate();
         } catch (SQLException e) {
@@ -29,13 +30,14 @@ public class AddressDAO {
         }
     }
 
+    // Update an existing address
     public void update(AddressModel address, DBConnection connection) {
-        String sql = "UPDATE morada SET num_casa = ?, rua = ?, bairro = ?, fk_comuna = ? WHERE pk_morada = ?";
+        String sql = "UPDATE address SET street = ?, house_number = ?, neighborhood = ?, district_id = ? WHERE address_id = ?";
         try (PreparedStatement ps = connection.getConnection().prepareStatement(sql)) {
-            ps.setInt(1, address.getHouseNum());
-            ps.setString(2, address.getStreet());
-            ps.setString(3, address.getDistrict());            
-            ps.setInt(4, address.getCommuneId());
+            ps.setString(1, address.getStreet());
+            ps.setInt(2, address.getHouseNumber());
+            ps.setString(3, address.getNeighborhood());
+            ps.setInt(4, address.getDistrictId());
             ps.setInt(5, address.getAddressId());
 
             ps.executeUpdate();
@@ -44,8 +46,9 @@ public class AddressDAO {
         }
     }
 
+    // Delete an address by its ID
     public void delete(int addressId, DBConnection connection) {
-        String sql = "DELETE FROM morada WHERE pk_morada = ?";
+        String sql = "DELETE FROM address WHERE address_id = ?";
         try (PreparedStatement ps = connection.getConnection().prepareStatement(sql)) {
             ps.setInt(1, addressId);
 
@@ -55,8 +58,9 @@ public class AddressDAO {
         }
     }
 
+    // Fetch all addresses
     public List<AddressModel> getAll(DBConnection connection) {
-        String sql = "SELECT * FROM morada";
+        String sql = "SELECT * FROM address";
         List<AddressModel> addressList = new ArrayList<>();
 
         try (PreparedStatement ps = connection.getConnection().prepareStatement(sql);
@@ -64,12 +68,12 @@ public class AddressDAO {
 
             while (resultSet.next()) {
                 AddressModel address = new AddressModel();
-                address.setAddressId(resultSet.getInt("pk_morada"));
-                address.setStreet(resultSet.getString("rua"));
-                address.setHouseNum(resultSet.getInt("num_casa"));
-                address.setDistrict(resultSet.getString("bairro"));
-                address.setCommuneId(resultSet.getInt("fk_comuna"));
-                address.setCreationDate(resultSet.getTimestamp("data_criacao").toLocalDateTime());
+                address.setAddressId(resultSet.getInt("address_id"));
+                address.setStreet(resultSet.getString("street"));
+                address.setHouseNumber(resultSet.getInt("house_number"));
+                address.setNeighborhood(resultSet.getString("neighborhood"));
+                address.setDistrictId(resultSet.getInt("district_id"));
+                address.setCreatedAt(resultSet.getTimestamp("created_at").toLocalDateTime());
 
                 addressList.add(address);
             }
@@ -77,23 +81,24 @@ public class AddressDAO {
             LOGGER.log(Level.SEVERE, "Error fetching all addresses", e);
         }
 
-        return addressList;  // Return an empty list if no addresses are found
+        return addressList; // Return an empty list if no addresses are found
     }
 
+    // Fetch a single address by its ID
     public AddressModel getAddressById(int addressId, DBConnection connection) {
-        String sql = "SELECT * FROM morada WHERE pk_morada = ?";
+        String sql = "SELECT * FROM address WHERE address_id = ?";
         try (PreparedStatement ps = connection.getConnection().prepareStatement(sql)) {
             ps.setInt(1, addressId);
 
             try (ResultSet resultSet = ps.executeQuery()) {
                 if (resultSet.next()) {
                     AddressModel address = new AddressModel();
-                    address.setAddressId(resultSet.getInt("pk_morada"));
-                    address.setStreet(resultSet.getString("rua"));
-                    address.setHouseNum(resultSet.getInt("num_casa"));
-                    address.setDistrict(resultSet.getString("bairro"));
-                    address.setCommuneId(resultSet.getInt("fk_comuna"));
-                    address.setCreationDate(resultSet.getTimestamp("data_criacao").toLocalDateTime());
+                    address.setAddressId(resultSet.getInt("address_id"));
+                    address.setStreet(resultSet.getString("street"));
+                    address.setHouseNumber(resultSet.getInt("house_number"));
+                    address.setNeighborhood(resultSet.getString("neighborhood"));
+                    address.setDistrictId(resultSet.getInt("district_id"));
+                    address.setCreatedAt(resultSet.getTimestamp("created_at").toLocalDateTime());
 
                     return address;
                 }
@@ -102,6 +107,6 @@ public class AddressDAO {
             LOGGER.log(Level.SEVERE, "Error fetching address by ID", e);
         }
 
-        return null;  // Return null if address not found, or return empty model instead
+        return null; // Return null if address not found
     }
 }

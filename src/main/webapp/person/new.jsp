@@ -1,8 +1,7 @@
-<%-- Document : person/new Created on : 08/01/2022, 23:38:26 Author : edsonpaulo --%>
+<%-- Document: person/new Created on: 08/01/2022, 23:38:26 Author: edsonpaulo --%>
 
-<%@page import="import com.thesquad.connection.DBConnection;
-"%>
-<%@page import="com.thesquad.utils.HtmlObj" %>
+<%@ page import="com.thesquad.connection.DBConnection" %>
+<%@ page import="com.thesquad.utils.HtmlObj" %>
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <%@ include file="../partials/html-head.jsp" %>  
@@ -12,116 +11,116 @@
         DBConnection connection = new DBConnection();
     %>
     <body>
-        <a href="<%=request.getContextPath()%>/person/list.jsp" class="btn btn-primary btn-sm m-4"><< Voltar</a>
+        <a href="<%=request.getContextPath()%>/person/list.jsp" class="btn btn-primary btn-sm m-4"><< Back</a>
 
         <div class="h-100 container d-flex justify-content-center align-items-start">
             <div class="card px-5 py-3" style="width: 100%;">
 
-                <h5 class="text-center mb-3">Nova Pessoa</h5>
+                <h5 class="text-center mb-3">New Person</h5>
 
                     <form class="form-container" method="POST"
                           action="<%=request.getContextPath()%>/person-servlet">
 
                         <div class="row">
                             <div class="form-group col-4">
-                                <label for="personType" class="required">Tipo</label>
+                                <label for="personType" class="required">Type</label>
                                 <select id="personType" name="personType" class="form-control"> 
-                                    <option>Selecione a funcão da pessoa</option>                                
-                                    <option value="AUTHOR" >1 - Autor</option>
-                                    <option value="READER">2 - Leitor</option>
+                                    <option>Select the person's role</option>                                
+                                    <option value="AUTHOR">1 - Author</option>
+                                    <option value="READER">2 - Reader</option>
                                 </select>
                             </div> 
                             <div class="form-group col-4">
-                                <label for="name" class="required">Nome</label>
+                                <label for="name" class="required">First Name</label>
                                 <input name="name" id="name" type="text" class="form-control" required>
                             </div>
                             <div class="form-group  col-4">
-                                <label for="surname" class="required">Sobrenome</label>
+                                <label for="surname" class="required">Last Name</label>
                                 <input name="surname" id="surname" type="text" class="form-control" required>
                             </div> 
                         </div>
 
                         <div class="row">
                             <div class="form-group col-4">
-                                <label for="bi" class="required">BI</label>
+                                <label for="bi" class="required">ID Number</label>
                                 <input name="bi" id="bi" type="text" class="form-control" required>
                             </div>
                             <div class="form-group col-4">
-                                <label for="birthDate" class="required">Data Nascimento</label>
+                                <label for="birthDate" class="required">Date of Birth</label>
                                 <input name="birthDate" id="birthDate" type="date" class="form-control" required>
                             </div> 
                             <div class="form-group col-4">
-                                <label for="gender" class="required">Genero</label>
+                                <label for="gender" class="required">Gender</label>
                                 <%=obj.getSelectBox(connection, "sexo", "gender", -1)%>
                             </div>
                         </div>
 
                         <div class="row">
                             <div class="form-group col-4">
-                                <label for="phone1" class="required">Telefone principal</label>
+                                <label for="phone1" class="required">Primary Phone</label>
                                 <input name="phone1" id="phone1" type="tel" class="form-control" required>
                             </div>
                             <div class="form-group col-4">
-                                <label for="phone2">Telefone secundário (opcional)</label>
+                                <label for="phone2">Secondary Phone (optional)</label>
                                 <input name="phone2" id="phone2" type="tel" class="form-control">
                             </div>       
                         </div>
 
                         <div class="row">
                             <div class="form-group col-4">
-                                <label for="email1" class="required">Email principal</label>
+                                <label for="email1" class="required">Primary Email</label>
                                 <input name="email1" id="email1" type="email" class="form-control" required>
                             </div>   
                             <div class="form-group col-4">
-                                <label for="email2">Email secundário (opcional)</label>
+                                <label for="email2">Secondary Email (optional)</label>
                                 <input name="email2" id="email2" type="email" class="form-control">
                             </div>                        
                         </div>
 
-                        <p class="h5 my-2 text-center text-muted">Morada</p> 
+                        <p class="h5 my-2 text-center text-muted">Address</p> 
 
                         <div class="row mt-3">
                             <div class="form-group col-4">
-                                <label for="country" class="required">Pais</label>
+                                <label for="country" class="required">Country</label>
                                 <%=obj.getSelectBox(connection, "pais", "country", -1)%>
                             </div>
                             <div class="form-group col-4">
-                                <label for="province" class="required">Provincia</label>
+                                <label for="province" class="required">Province</label>
                                 <select id="province" name="province" class="form-control"> 
-                                    <option>-- Selecione um pais antes --</option>
+                                    <option>-- Select a country first --</option>
                                 </select>
                             </div>     
                             <div class="form-group  col-4">
-                                <label for="municipality" class="required">Municipio</label>
+                                <label for="municipality" class="required">Municipality</label>
                                 <select id="municipality" name="municipality" class="form-control"> 
-                                    <option>-- Selecione uma provincia antes --</option>
+                                    <option>-- Select a province first --</option>
                                 </select>
                             </div>
                         </div>
 
                         <div class="row">
                             <div class="form-group  col-3">
-                                <label for="commune" class="required">Comuna</label>
+                                <label for="commune" class="required">Commune</label>
                                 <select id="commune" name="commune" class="form-control"> 
-                                    <option>-- Selecione um municipio antes --</option>
+                                    <option>-- Select a municipality first --</option>
                                 </select>
                             </div>
                             <div class="form-group col-3">
-                                <label for="district">Bairro</label>
+                                <label for="district">Neighborhood</label>
                                 <input name="district" id="district" type="text" class="form-control">
                             </div>
                             <div class="form-group col-3">
-                                <label for="street">Rua</label>
+                                <label for="street">Street</label>
                                 <input name="street" id="street" type="text" class="form-control">
                             </div>
                             <div class="form-group col-3">
-                                <label for="houseNum">Nº da casa</label>
+                                <label for="houseNum">House Number</label>
                                 <input name="houseNum" id="houseNum" type="number" class="form-control">
                             </div>
                         </div>
 
                         <button type="submit" class="btn btn-primary my-2 float-right">
-                            √  Confirmar
+                            √ Confirm
                         </button>
                     </form>
             </div>
@@ -132,7 +131,7 @@
 
     <script type="text/javascript">
 
-        // get current context path or base url path name 
+        // Get current context path or base URL path
         function getContextPath() {
             return window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2));
         }
@@ -148,7 +147,7 @@
                         });
                     })
                     .catch(() => {
-                        selectElement.options[0] = new Option('Sem dados disponíveis', '');
+                        selectElement.options[0] = new Option('No data available', '');
                     });
         }
 
@@ -156,24 +155,24 @@
             const provinceNode = document.getElementById("province");
             while (provinceNode.firstChild)
                 provinceNode.removeChild(provinceNode.lastChild);
-            provinceNode.options[provinceNode.options.length] = new Option('Selecione uma provincia');
+            provinceNode.options[provinceNode.options.length] = new Option('Select a province');
         }
 
         function clearMunicipalitySelect() {
             const municipalityNode = document.getElementById("municipality");
             while (municipalityNode.firstChild)
                 municipalityNode.removeChild(municipalityNode.lastChild);
-            municipalityNode.options[municipalityNode.options.length] = new Option('Selecione um município');
+            municipalityNode.options[municipalityNode.options.length] = new Option('Select a municipality');
         }
 
         function clearCommuneSelect() {
             const communeNode = document.getElementById("commune");
             while (communeNode.firstChild)
                 communeNode.removeChild(communeNode.lastChild);
-            communeNode.options[communeNode.options.length] = new Option('Selecione uma comuna');
+            communeNode.options[communeNode.options.length] = new Option('Select a commune');
         }
 
-        // -- Handling changes for selectboxes --
+        // -- Handling changes for select boxes --
 
         document.getElementById('country').addEventListener('change', function (event) {
             clearProvinceSelect();

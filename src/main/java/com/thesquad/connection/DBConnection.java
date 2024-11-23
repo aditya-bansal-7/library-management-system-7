@@ -14,6 +14,7 @@ public class DBConnection {
     private String DB_PASSWORD;
     private Connection connection = null;
 
+    @SuppressWarnings("UseSpecificCatch")
     public DBConnection() {
         try {
             // Load properties from application.properties
@@ -50,6 +51,7 @@ public class DBConnection {
     }
 
     // Close the MySQL connection
+    @SuppressWarnings("CallToPrintStackTrace")
     public void closeConnection() {
         try {
             if (connection != null) {
