@@ -5,7 +5,8 @@ This project is a Library Management System (LMS) designed to manage the core fu
 
 ---
 
-### Screen shot
+### Screenshot / video
+![video](https://github.com/user-attachments/assets/bd6bf9fc-c9ab-42e5-ba29-c242e54e256c)
 ![image](https://github.com/user-attachments/assets/42fec7ae-5bc3-4cc6-82d8-468593f2f5fa)
 ![image](https://github.com/user-attachments/assets/3a9db534-2054-452f-aecf-e653c32e903f)
 ![image](https://github.com/user-attachments/assets/2c7a6e97-6e99-41c9-9094-0aa9fc083df3)
