@@ -1,30 +1,32 @@
 package com.thesquad.controllers;
 
-import com.google.gson.Gson;
-import com.thesquad.utils.Helpers;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.google.gson.Gson;
 import com.thesquad.connection.DBConnection;
 import com.thesquad.dao.AddressDAO;
 import com.thesquad.dao.CommuneDAO;
 import com.thesquad.dao.MunicipalityDAO;
+import com.thesquad.dao.ProvinceDAO;
 import com.thesquad.dao.PublisherDAO;
 import com.thesquad.dao.PublisherEmailDAO;
 import com.thesquad.dao.PublisherPhoneDAO;
-import com.thesquad.dao.ProvinceDAO;
 import com.thesquad.models.AddressModel;
 import com.thesquad.models.CommuneModel;
 import com.thesquad.models.MunicipalityModel;
+import com.thesquad.models.ProvinceModel;
 import com.thesquad.models.PublisherEmailModel;
 import com.thesquad.models.PublisherModel;
 import com.thesquad.models.PublisherPhoneModel;
-import com.thesquad.models.ProvinceModel;
+import com.thesquad.utils.Helpers;
 
 /**
  *
@@ -36,6 +38,7 @@ public class PublisherServlet extends HttpServlet {
     private DBConnection connection;
 
     @Override
+    @SuppressWarnings("CallToPrintStackTrace")
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
@@ -54,23 +57,20 @@ public class PublisherServlet extends HttpServlet {
                 int id = Integer.parseInt(request.getParameter("id"));
 
                 switch (op) {
-                    case "province":
+                    case "province" -> {
                         List<ProvinceModel> provinceList = provinceDao.getProvincesByCountryId(id, connection);
                         writer.write(json.toJson(provinceList));
-                        break;
-
-                    case "municipality":
+                    }
+                    case "municipality" -> {
                         List<MunicipalityModel> muniList = muniDao.getMunicipalitiesByProvinceId(id, connection);
                         writer.write(json.toJson(muniList));
-                        break;
-
-                    case "commune":
+                    }
+                    case "commune" -> {
                         List<CommuneModel> communeList = communeDao.getCommunesByMunicipalityId(id, connection);
                         writer.write(json.toJson(communeList));
-                        break;
-
-                    default:
-                        break;
+                    }
+                    default -> {
+                    }
                 }
             }
 
@@ -93,6 +93,7 @@ public class PublisherServlet extends HttpServlet {
     }
     
     @Override
+    @SuppressWarnings("CallToPrintStackTrace")
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
   
@@ -114,7 +115,8 @@ public class PublisherServlet extends HttpServlet {
             address.setStreet(request.getParameter("street"));
             address.setHouseNum(Integer.parseInt(request.getParameter("houseNum")));
             address.setDistrict(request.getParameter("district"));
-            address.setCommuneId(Integer.parseInt(request.getParameter("commune")));
+
+            // address.setCommune(Integer.parseInt(request.getParameter("commune")));
             
             /**
              * FILL PHONE

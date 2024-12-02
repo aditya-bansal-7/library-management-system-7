@@ -77,4 +77,8 @@ public class AddressModel {
     public void setDistrict(String parameter) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
+
+    public void setHouseNum(int parseInt) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 }
