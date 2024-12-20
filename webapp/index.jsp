@@ -1,8 +1,4 @@
-<%-- 
-    Document   : index
-    Created on : 08/01/2022, 20:14:13
-    Author     : edsonpaulo
---%>
+
 
 <%@page import="com.thesquad.utils.HtmlObj"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
