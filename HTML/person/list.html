@@ -8,121 +8,7 @@
     <script src="../assets/js/popper.min.js"></script>
     <script src="../assets/js/bootstrap.min.js"></script>
     <title>Person List</title>
-    <script>
-      const persons = [
-        {
-          id: 1,
-          type: "Author",
-          first_name: "John",
-          last_name: "Doe",
-          gender: "Male",
-          id_number: "123456789",
-          birth_date: "1985-07-15",
-        },
-        {
-          id: 2,
-          type: "Reader",
-          first_name: "Jane",
-          last_name: "Smith",
-          gender: "Female",
-          id_number: "987654321",
-          birth_date: "1990-03-22",
-        },
-        {
-          id: 3,
-          type: "Author",
-          first_name: "Sam",
-          last_name: "Brown",
-          gender: "Male",
-          id_number: "456789123",
-          birth_date: "1978-12-05",
-        },
-        {
-          id: 4,
-          type: "Reader",
-          first_name: "Emily",
-          last_name: "Johnson",
-          gender: "Female",
-          id_number: "234567891",
-          birth_date: "1992-09-18",
-        },
-        {
-          id: 5,
-          type: "Author",
-          first_name: "Michael",
-          last_name: "Wilson",
-          gender: "Male",
-          id_number: "345678912",
-          birth_date: "1975-04-30",
-        },
-        {
-          id: 6,
-          type: "Reader",
-          first_name: "Sarah",
-          last_name: "Davis",
-          gender: "Female",
-          id_number: "567891234",
-          birth_date: "1988-11-12",
-        },
-      ];
-
-      // Function to filter persons based on search input
-      function searchPersons(searchTerm) {
-        searchTerm = searchTerm.toLowerCase();
-        return persons.filter(
-          (person) =>
-            person.id.toString().includes(searchTerm) ||
-            person.first_name.toLowerCase().includes(searchTerm) ||
-            person.last_name.toLowerCase().includes(searchTerm)
-        );
-      }
-
-      // Function to populate the table with filtered data
-      function loadPersons(filteredPersons = persons) {
-        const tableBody = document.querySelector("#personTableBody");
-        tableBody.innerHTML = "";
-
-        if (filteredPersons.length === 0) {
-          tableBody.innerHTML = `<tr><td colspan="8" class="text-center text-muted my-5">No data available!</td></tr>`;
-          return;
-        }
-
-        filteredPersons.forEach((person) => {
-          const row = document.createElement("tr");
-          row.innerHTML = `
-                <th scope="row">${person.type}</th>
-                <td>${person.id}</td>
-                <td>${person.first_name}</td>
-                <td>${person.last_name}</td>
-                <td>${person.gender}</td>
-                <td>${person.id_number}</td>
-                <td>${person.birth_date}</td>
-                <td>
-                    <a class="btn btn-secondary btn-sm text-white" href="view.html?id=${person.id}">View</a>
-                    <a class="btn btn-secondary btn-sm text-white mx-2" href="edit.html?id=${person.id}">Edit</a>
-                    <a class="btn btn-danger btn-sm text-white" href="/person-servlet?id=${person.id}&action=delete">Remove</a>
-                </td>
-            `;
-          tableBody.appendChild(row);
-        });
-      }
-
-      // Handle search input
-      function handleSearch() {
-        const searchTerm = document.querySelector("#searchInput").value;
-        const filteredPersons = searchPersons(searchTerm);
-        loadPersons(filteredPersons);
-      }
-
-      // Load persons on page load
-      window.addEventListener("DOMContentLoaded", () => {
-        loadPersons();
-        // Add event listener for search input
-        document
-          .querySelector("#searchInput")
-          .addEventListener("input", handleSearch);
-      });
-    </script>
+    <script type="module" src="./person.js"></script>
   </head>
   <body>
     <!-- Navbar -->
@@ -334,8 +220,8 @@
     </div>
 
     <div class="list-container">
-      <a href="/HTML" class="h-btn text-center m-4"> Back</a>
-      <a href="new.html" class="h-btn text-center m-4 float-right"
+      <a href="../index.html" class="h-btn text-center m-4"> Back</a>
+      <a href="./new.html" class="h-btn text-center m-4 float-right"
         >+ Add New Person</a
       >
 
@@ -379,6 +265,5 @@
       </div>
     </div>
 
-    <script src="../assets/js/script.js"></script>
   </body>
 </html>
